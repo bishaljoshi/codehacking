@@ -4,7 +4,7 @@
 
     <h1>Create Users</h1>
 
-    {!! Form::open(['method'=>'post', 'action'=>'AdminUsersController@store']) !!}
+    {!! Form::open(['method'=>'post', 'action'=>'AdminUsersController@store','files'=>true]) !!}
 
         <div class="form-group">
             {!! Form::label('name', 'Name') !!}
@@ -23,8 +23,8 @@
             {!! Form::select('is_active',array(1=>'Active',0=>'Not Active'),0,['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('file', 'Upload Image') !!}
-            {!! Form::file('file',null,['class'=>'form-control']) !!}
+            {!! Form::label('photo_id', 'Upload Image') !!}
+            {!! Form::file('photo_id',null,['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('password', 'Password') !!}

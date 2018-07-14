@@ -31,4 +31,14 @@ class UsersEditRequest extends Request
             'is_active'=>'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Name is required',
+            'email.required' => 'Email is required',
+            'role_id.required' => 'Role is required',
+            'is_active.required' => 'Status is required'
+        ];
+    }
 }

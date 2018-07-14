@@ -6,12 +6,13 @@
 
     <div class="col-md-3">
 
-        <img src = "{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt="" class="img-responsive img-rounded">
+        <img src = "{{$user->photo ? URL::to('/').$user->photo->file : 'http://placehold.it/400x400'}}" alt="" class="img-responsive img-rounded">
     
     </div>
 
     <div class="col-md-9">
-    
+        @include('includes.form_error')
+
         {!! Form::model($user,['method'=>'PATCH', 'action'=>['AdminUsersController@update',$user->id],'files'=>true]) !!}
 
             <div class="form-group">
@@ -40,13 +41,39 @@
             </div>
 
             <div class="form-group">
-                {!! Form::submit('Update User',['class'=>'btn btn-primary']) !!}
+                {!! Form::submit('Update User',['class'=>'btn btn-primary col-md-6']) !!}
             </div>
 
         {!! Form::close() !!}
 
-        @include('includes.form_error')
+        {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy',$user->id]]) !!}
+
+            <div class="form-group">
+                {!! Form::submit('Delete User',['class'=>'btn btn-danger btn-delete col-md-6']) !!}
+            </div>
+
+        {!! Form::close() !!}
+
     </div>
-    
+
+@endsection
+
+@section('footer')
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".btn-delete").click(function(){
+
+                var r = confirm("Are you sure you want to delete this?");
+                if(r){
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+    </script>
 
 @endsection
